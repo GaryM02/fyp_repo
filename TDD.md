@@ -227,7 +227,7 @@ Cloud Hosting (AWS / GCP): The back end will be hosted on a scalable cloud infra
 
 ### Data Model
 
-![Alt text](relative%20fyp_content/fyp_data_model (1).webp?raw=true "Title")
+![Alt text](https://raw.githubusercontent.com/GaryM02/fyp_repo/refs/heads/main/fyp_content/fyp_data_model%20(1).webp "Title")
 
 ### API/Interface Changes
 
