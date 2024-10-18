@@ -1,7 +1,7 @@
 # An AI-Driven Trustworthiness Prediction System for Online, Text-Based Medical Content
 * **Author**: Gary Maguire
-* **Reference** (if any): Null
-* **Implementation/POC** (if applicable): Null
+* **Reference**: Null
+* **Implementation/POC**: Null
 
 ## Introduction
 
