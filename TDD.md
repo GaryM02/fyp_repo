@@ -227,8 +227,7 @@ Cloud Hosting (AWS / GCP): The back end will be hosted on a scalable cloud infra
 
 ### Data Model
 
-Describe how the data is stored, what should be changed in the existing data.
-This section might include schema definitions, diagrams and data validation methods.
+<a href="fyp_content/fyp_data_model (1).webp"></a>
 
 ### API/Interface Changes
 
