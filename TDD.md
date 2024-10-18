@@ -1,8 +1,7 @@
-# My Design Document (Title)
-* **Author**: [Halil Cetiner](https://cetiner.medium.com)
-* **Reference** (if any): Epic, ticket, issue, or task tracker reference link
-* **Implementation/POC** (if applicable):
-  [Code changes link]()
+# An AI-Driven Trustworthiness Prediction System for Online, Text-Based Medical Content
+* **Author**: Gary Maguire
+* **Reference** (if any): Null
+* **Implementation/POC** (if applicable): Null
 
 ## Introduction
 
