@@ -11,19 +11,11 @@ This project aims to develop an AI-driven system that evaluates the credibility 
 
 ### Background
 
-The widespread use of the internet for health-related inquiries began in the late 1990s with the rise of search engines and websites offering medical advice. Early platforms like WebMD and health-focused forums became popular sources for the public to seek information about symptoms, treatments, and medical conditions. However, the open nature of the web also led to the proliferation of unverified and potentially misleading medical content.
+Internet-based health inquiries began in the late 1990s, driven by search engines and websites like WebMD, which became popular for information on symptoms, treatments, and conditions. However, this open access also led to a rise in unverified medical content. Concerns over accuracy prompted initiatives in the early 2000s, such as the Health on the Net Foundation's certification for trustworthy sites. Yet, the rapid growth of social media in the mid-2000s, with platforms like Facebook and YouTube, further complicated the credibility of health information.
 
-As internet usage grew, so did concerns over the accuracy and credibility of online medical information. In the early 2000s, efforts were made to establish guidelines for trustworthy health information. Institutions such as the Health on the Net Foundation (HON) created certification systems to identify reputable medical websites. However, these efforts faced limitations in scale and enforcement, especially as user-generated content exploded with the advent of social media and health forums.
+The scientific community responded by developing automated tools for evaluating online content. Early rule-based systems lacked nuance, but advancements in machine learning in the late 2010s improved text analysis. Models like BERT and SciBERT helped assess medical information more accurately, while explainable AI techniques, such as LIME and SHAP, provided transparency in AI-driven decisions.
 
-The rapid growth of platforms like Facebook, Reddit, and YouTube in the mid-2000s introduced new challenges. These platforms enabled users to share personal experiences, often mixing anecdotal evidence with scientific information, making it difficult for laypersons to discern credible sources. Misinformation about vaccines, treatments, and diseases became more widespread, creating significant public health risks.
-
-In response, the scientific community began exploring automated solutions to assess the credibility of online information. Early approaches relied on rule-based systems and keyword matching to filter out unreliable content, but these systems struggled with the complexity and nuance of medical language. The introduction of machine learning in the late 2010s brought advancements in natural language processing (NLP), enabling more sophisticated models to analyze text and context. Models like BERT and SciBERT, designed specifically for scientific literature, offered new opportunities to evaluate the trustworthiness of online medical content with greater accuracy.
-
-At the same time, explainability in AI gained importance, particularly in domains like healthcare, where users needed to understand and trust the rationale behind AI-driven decisions. Explainable AI (XAI) techniques like LIME and SHAP emerged, enabling AI systems to provide transparent and interpretable predictions.
-
-Despite these advances, no comprehensive tool had been widely adopted to assess the trustworthiness of medical information across diverse platforms in real-time. This gap, combined with the increasing volume of health misinformation, especially during events like the COVID-19 pandemic, underscored the need for a robust, explainable solution that could support users in evaluating medical information online.
-
-This project seeks to address that gap by leveraging the latest AI and XAI technologies to create an accessible, real-time trustworthiness prediction system for online text-based medical content.
+Despite progress, no comprehensive tool exists to assess health information trustworthiness across platforms in real time. This project aims to fill that gap using advanced AI and explainable AI to create a reliable, real-time credibility assessment tool for online medical content.
 
 ### Out of Scope
 
@@ -122,114 +114,24 @@ A design principle used in React applications where the user interface is broken
 
 ## Proposal
 
-The front end of the project will be a Chrome Extension built using React, a popular JavaScript library for building user interfaces. React is an ideal choice for this project due to its component-based architecture, which allows for efficient development, code reuse, and scalability. The extension will provide users with a seamless experience while browsing medical content, integrating the trustworthiness assessment functionality in a non-intrusive and intuitive manner.
+The project’s front end will be a Chrome Extension built with React for efficient, modular UI. This extension will integrate trustworthiness assessments directly into medical content pages, providing users with real-time, unobtrusive trust scores and explanations via widgets, modals, and other interactive components. Key features include:
 
-Key Components of the Front-End Solution
-Chrome Extension Framework:
+Trustworthiness Score Display: A clear, color-coded score for content credibility.
+Explanation Modal: Uses Explainable AI (XAI) to show why content is rated as it is.
+Settings and Feedback: Users can adjust trust score preferences and provide feedback.
+The front end connects to a FastAPI backend that manages data storage, handles trustworthiness predictions, and uses a fine-tuned SciBERT model to evaluate content. FastAPI’s async capabilities ensure responsiveness, while RESTful APIs facilitate communication with React. MongoDB stores user logs and feedback, while PostgreSQL manages structured data like user profiles.
 
-The Chrome Extension will allow the user to interact with the trustworthiness prediction system while browsing the web. It will inject the UI components directly into web pages displaying medical content, enabling real-time analysis and feedback without requiring users to leave their current browsing session.
-React for Dynamic UI:
+The back end’s SciBERT model, served via TorchServe, analyzes text credibility. LIME explanations clarify AI predictions, enhancing transparency. Security is enforced through JWT authentication, data encryption, and CORS policies. The system’s architecture is optimized for performance and scalability with Docker, Kubernetes, and asynchronous task handling.
 
-The user interface will be built using React to create a dynamic, responsive experience. React’s virtual DOM will ensure fast rendering and updates without slowing down the browser.
-Component-Based Design: The UI will be modular, using reusable components such as:
-Trustworthiness Score Widget: Displays a simple and clear visual representation of the trust score for the content being viewed (e.g., a score out of 100 or a color-coded bar).
-Explanation Modal: Provides a detailed explanation of the AI's decision, using Explainable AI (XAI) techniques like LIME, so the user can see why specific content is rated as trustworthy or not.
-Settings and Feedback: Allows users to adjust preferences (e.g., trust score thresholds) and submit feedback on system performance.
-Content Evaluation Trigger: A button or action that triggers the system to analyze the webpage content (automatically or on demand).
-UI/UX Considerations:
-
-Non-Intrusive Design: The Chrome Extension will be lightweight and unobtrusive, displaying trustworthiness scores in a subtle way (e.g., a badge or small widget on the corner of the browser window).
-Real-Time Feedback: As the user navigates across pages, the extension will provide real-time or on-demand trustworthiness scores without requiring page reloads, ensuring a smooth browsing experience.
-Intuitive and Transparent: Users will have access to simple explanations for the scores, helping them understand the AI's decisions without technical jargon. This will build trust and engagement.
-React Integration with Backend (FastAPI):
-
-The React app will communicate with the backend (built using FastAPI) via RESTful API calls. When a user visits a medical content page and triggers an analysis, the front end will send a request to the FastAPI backend for:
-Trustworthiness Analysis: Submitting the medical content (e.g., blog post, forum entry) for trust score prediction.
-Explanations from XAI (LIME): Receiving explanations of why the content is considered trustworthy or not.
-Responses from the API will be displayed in the UI in a user-friendly manner, updating the trust score and explanation widgets as soon as results are available.
-State Management (React State/Redux):
-
-For managing complex data across different UI components (e.g., maintaining user preferences, the results of trustworthiness evaluations), React State or Redux will be used. Redux will help keep the application state predictable and easy to debug, especially when handling asynchronous data fetching from the API.
-Chrome Extension Manifest v3:
-
-The Chrome Extension will be built in compliance with Manifest v3, the latest specification for Chrome Extensions. Key elements include:
-Background Service Worker: A service worker will manage long-running background tasks, such as sending content to the backend for analysis and receiving results.
-Content Script: This script will be injected into web pages to extract the text content for evaluation and display the UI components on the page.
-Permissions: The extension will request minimal permissions to access page content, ensuring user privacy and security.
-Error Handling and User Notifications:
-
-The front end will include robust error handling for scenarios such as failed API calls, missing or incomplete content, or slow response times from the backend. User-friendly error messages will guide users through resolving issues or retrying evaluations.
-Notifications will alert users when new results are available or if there’s an issue with fetching a trust score.
-Performance Optimization:
-
-The front-end React app will be optimized for performance by minimizing the use of resources such as DOM manipulation, using lazy loading for components, and optimizing API calls to reduce page load delays.
-
-The back end of the project will be designed to efficiently handle requests from the front-end Chrome Extension, manage data storage, and perform AI-driven trustworthiness predictions. The system will leverage FastAPI for the web framework, MongoDB and PostgreSQL for data storage, and a pre-trained SciBERT model for credibility evaluation of medical content. This solution is scalable, secure, and designed for real-time interactions between the front end and the back end.
-
-Key Components of the Back-End Solution
-FastAPI Framework for API Handling:
-
-FastAPI will serve as the core web framework to handle all HTTP requests from the Chrome Extension and communicate with the AI model. FastAPI is selected for its speed, asynchronous capabilities, and ease of integration with machine learning models.
-Endpoints: Key API endpoints include:
-Content Submission: Accepts text data from the Chrome Extension for credibility analysis.
-Trustworthiness Score Retrieval: Sends the trust score and an explanation of the score (using Explainable AI techniques like LIME) back to the front end.
-User Feedback: Receives user feedback about the accuracy or usability of the trustworthiness predictions.
-Asynchronous Processing: FastAPI’s asynchronous capabilities will be leveraged to handle multiple requests concurrently, ensuring that even during high traffic, the system remains responsive.
-AI/ML Model (SciBERT) for Trustworthiness Prediction:
-
-A pre-trained SciBERT model will be fine-tuned on a dataset of scientific medical text (PubMed Abstracts). This model is designed to handle domain-specific text and will be responsible for analyzing online medical content to predict its credibility.
-Model Inference Pipeline:
-Input Processing: The submitted text will be preprocessed to extract relevant features (e.g., important phrases, entities) before being fed into the SciBERT model.
-Prediction: The model will output a credibility score (e.g., on a scale from 0 to 100) indicating how trustworthy the content is based on its similarity to peer-reviewed, scientific literature.
-Explainable AI (XAI) Integration:
-LIME (Local Interpretable Model-Agnostic Explanations): LIME will be used to generate explanations for the AI’s predictions. It will provide insights into which parts of the text contributed to a high or low trustworthiness score. These explanations will be sent to the front end for user display.
-Data Storage:
-
-MongoDB (NoSQL Database):
-MongoDB will store unstructured data, such as:
-User Logs: User interactions with the extension (e.g., pages visited, content evaluated).
-Feedback Data: Any feedback submitted by users on the AI’s predictions.
-Session Data: Temporary session information, including user preferences and browsing history, if needed for specific cases like session-based analysis.
-MongoDB is ideal for this because of its flexibility in handling varying data structures, particularly logs and user-generated content.
-PostgreSQL (Relational Database):
-PostgreSQL will handle structured data that requires relationships and consistency, such as:
-User Profiles: Storing information like user IDs, preferences, and anonymized data related to how they interact with the system.
-Prediction Results: Historical predictions and scores for auditing and analysis purposes.
-PostgreSQL provides the necessary reliability and ACID compliance to handle structured, user-centric data.
-Model Management and Inference Pipeline:
-
-The pre-trained SciBERT model will be served in production using tools like TorchServe or TensorFlow Serving, which are designed for high-performance model inference in a live system.
-Model Fine-Tuning: The SciBERT model will be fine-tuned on the PubMed Abstracts dataset using machine learning frameworks like PyTorch or TensorFlow, ensuring it is capable of evaluating medical content with high accuracy.
-Batch Processing (Optional): If real-time processing is not required for every request, the system can queue requests and process them in batches to improve performance and reduce load during peak times.
-Scalability and Load Management:
-
-Docker and Containerization: The entire backend will be containerized using Docker, ensuring consistency across different environments and making it easier to scale horizontally when traffic increases.
-Kubernetes (Optional): For larger deployments, Kubernetes can be used to orchestrate containers, manage scaling, and handle load balancing between API requests and model inference processes.
-Asynchronous Task Queue (Celery or Redis): For handling time-consuming tasks, such as large content evaluations or LIME explanations, a task queue system like Celery or Redis Queue will be employed to offload these from the main API request flow. This ensures that requests don’t block the API and users get responses quickly.
-Security Measures:
-
-API Authentication and Authorization:
-Secure API access will be enforced using OAuth 2.0 or JWT (JSON Web Tokens) for user authentication and ensuring only authorized users or extensions can make requests to the system.
-Data Encryption:
-All communications between the Chrome Extension, back end, and databases will use HTTPS and SSL/TLS encryption to protect sensitive data.
-CORS (Cross-Origin Resource Sharing) Policies:
-Proper CORS settings will be implemented to ensure that the Chrome Extension can securely communicate with the back end without exposing it to vulnerabilities from other websites.
-Logging, Monitoring, and Error Handling:
-
-Logging (ELK Stack): A logging system using Elasticsearch, Logstash, and Kibana (ELK Stack) will be set up to track API requests, error logs, and model performance. This will help in troubleshooting and improving the model over time.
-Performance Monitoring (Prometheus + Grafana): Metrics from FastAPI, MongoDB, PostgreSQL, and the AI model will be collected and visualized using Prometheus and Grafana to monitor the health of the system and ensure it runs efficiently.
-Error Handling: Graceful error handling mechanisms will ensure that the back end can manage failed API requests, timeouts, and database errors. Detailed error messages will be logged, and user-friendly messages will be sent to the front end.
-Deployment and CI/CD:
-
-CI/CD Pipeline (GitHub Actions / Jenkins): Continuous integration and deployment (CI/CD) will be automated using tools like GitHub Actions or Jenkins. This will enable automatic deployment of updates, ensuring the system can evolve without downtime.
-Cloud Hosting (AWS / GCP): The back end will be hosted on a scalable cloud infrastructure such as Amazon Web Services (AWS) or Google Cloud Platform (GCP), making it easier to scale horizontally and ensure global availability of the service.
-
+Deployment on AWS or GCP, with CI/CD via GitHub Actions, ensures scalable, globally accessible service.
 
 ### Data Model
 
 <p align="center">
 <img src="/fyp_content/fyp_data_model (1).webp" alt="Data Model" style="height: 700px; width:1000px;"/>
 </p>
+
+###TODO
 
 ### API/Interface Changes
 
