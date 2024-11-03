@@ -1,21 +1,18 @@
 # An AI-Driven Trustworthiness Prediction System for Online, Text-Based Medical Content
 * **Author**: Gary Maguire
-* **Reference**: Null
 * **Implementation/POC**: Null
 
 ## Introduction
 
 In today’s digital age, individuals frequently turn to online sources for medical information, but the credibility of this content varies significantly across platforms. Users face challenges in determining the trustworthiness of information, especially when misinformation, biased reporting, and outdated research are common issues.
 
-This project aims to develop an AI-driven system that evaluates the credibility of online, text-based medical content. Using a fine-tuned Transformer model like SciBERT and explainable AI (XAI) techniques such as LIME, the system will provide users with trustworthiness scores and explanations for its predictions. Delivered via a Chrome Extension with a React-based interface and FastAPI backend, this tool will help users make informed decisions about online medical information.
+This project aims to develop an AI-driven system that evaluates the credibility of online, text-based medical content. Using a fine-tuned Transformer model and explainable AI (XAI) techniques such as LIME, the system will provide users with trustworthiness scores and explanations for its predictions. Delivered via a Chrome Extension with a React-based interface and FastAPI backend, this tool will help users make informed decisions about online medical information.
 
 ### Background
 
 Internet-based health inquiries began in the late 1990s, driven by search engines and websites like WebMD, which became popular for information on symptoms, treatments, and conditions. However, this open access also led to a rise in unverified medical content. Concerns over accuracy prompted initiatives in the early 2000s, such as the Health on the Net Foundation's certification for trustworthy sites. Yet, the rapid growth of social media in the mid-2000s, with platforms like Facebook and YouTube, further complicated the credibility of health information.
 
 The scientific community responded by developing automated tools for evaluating online content. Early rule-based systems lacked nuance, but advancements in machine learning in the late 2010s improved text analysis. Models like BERT and SciBERT helped assess medical information more accurately, while explainable AI techniques, such as LIME and SHAP, provided transparency in AI-driven decisions.
-
-Despite progress, no comprehensive tool exists to assess health information trustworthiness across platforms in real time. This project aims to fill that gap using advanced AI and explainable AI to create a reliable, real-time credibility assessment tool for online medical content.
 
 ### Out of Scope
 
@@ -111,17 +108,17 @@ The system will log essential data for model performance monitoring and basic us
 
 ## Proposal
 
-The project’s front end will be a Chrome Extension built with React for efficient, modular UI. This extension will integrate trustworthiness assessments directly into medical content pages, providing users with real-time, unobtrusive trust scores and explanations via widgets, modals, and other interactive components. Key features include:
+The project’s front end will be a Chrome Extension built with React for efficient, modular UI. This extension will integrate trustworthiness assessments directly into medical content pages, providing users with real-time trust scores and explanations via widgets, modals, and other interactive components. Key features include:
 
-***Trustworthiness*** Score Display: A clear, color-coded score for content credibility.
+***Trustworthiness Score Display***: A clear, color-coded score for content credibility.
 ***Explanation Modal***: Uses Explainable AI (XAI) to show why content is rated as it is.
 ***Settings and Feedback***: Users can adjust trust score preferences and provide feedback.
 
-***The front end*** connects to a FastAPI backend that manages data storage, handles trustworthiness predictions, and uses a fine-tuned SciBERT model to evaluate content. FastAPI’s async capabilities ensure responsiveness, while RESTful APIs facilitate communication with React. MongoDB stores user logs and feedback, while PostgreSQL manages structured data like user profiles.
+***The front end*** connects to a FastAPI backend that manages data storage, handles trustworthiness predictions, and uses a fine-tuned model to evaluate content. FastAPI’s async capabilities ensure responsiveness, while RESTful APIs facilitate communication with React. MongoDB stores user logs and feedback, while PostgreSQL manages structured data like user profiles, predictions etc.
 
-***The back end’s*** SciBERT model, served via TorchServe, analyzes text credibility. LIME explanations clarify AI predictions, enhancing transparency. Security is enforced through JWT authentication, data encryption, and CORS policies. The system’s architecture is optimized for performance and scalability with Docker, Kubernetes, and asynchronous task handling.
+***The back end*** model, served via TorchServe and accessed from fastapi, analyzes text credibility. LIME explanations clarify AI predictions, enhancing transparency. Security is enforced through JWT authentication, data encryption, and CORS policies.
 
-Deployment on AWS or GCP, with CI/CD via GitHub Actions, ensures scalable, globally accessible service.
+Deployment on AWS or GCP, with CI/CD via GitHub Actions, ensures scalable, accessible service.
 
 ### Data Model
 
@@ -129,19 +126,12 @@ Deployment on AWS or GCP, with CI/CD via GitHub Actions, ensures scalable, globa
 <img src="/fyp_content/fyp_data_model (1).webp" alt="Data Model" style="height: 700px; width:1000px;"/>
 </p>
 
-###TODO
-
-### API/Interface Changes
-
-Describe how different components communicate with each other. This can include REST endpoints, RPC events, Kafka messages etc.
-Some pseudocode, diagram or a simple flowchart could be quite helpful here.
-
-Explaining error states and failure scenarios, conditions leading to those scenarios etc could also be good here.
-
 ### System Design
 
 If the design proposed in the document consists multiple components, listing those components here and explaining their role in the solution is necessary.
 A diagram could explain a lot more than words in this section.
+
+###TODO
 
 ### Rationale
 
