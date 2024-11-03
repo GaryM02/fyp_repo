@@ -19,48 +19,61 @@ Despite progress, no comprehensive tool exists to assess health information trus
 
 ### Out of Scope
 
-###Product Requirements (Out of Scope):
-Offline Functionality:
+### Product Requirements (Out of Scope):
+***Offline Functionality***:
 
 The system will not support offline access or predictions. It requires a continuous internet connection to function, as all data processing and model inference will occur on the backend server.
-Non-Medical Content Analysis:
+
+***Non-Medical Content Analysis***:
 
 The system will only focus on evaluating text-based medical information. It will not assess the trustworthiness of non-medical information, such as general news, product reviews, or social media posts unrelated to healthcare.
-Cross-Language Support:
+
+***Cross-Language Support***:
 
 The initial system will be designed for English-language content only. Multilingual support for other languages or cross-lingual analysis is outside the scope of this version.
-Mobile App Development:
+
+***Mobile App Development***:
 
 The project will focus exclusively on a Chrome Extension for desktop environments. No native mobile applications (iOS/Android) will be developed as part of this project.
-User-Generated Content:
+
+***User-Generated Content***:
 
 The system will not include features for users to submit their own medical content for evaluation. The Chrome Extension will only evaluate content from predefined online sources such as medical blogs, research repositories, and news sites.
-Human-in-the-Loop Features:
+
+***Human-in-the-Loop Features***:
 
 Manual review or moderation by medical professionals to verify the AI’s predictions will not be integrated. All trustworthiness predictions will be made purely by the AI system without human intervention.
-Personalized Health Recommendations:
+
+***Personalized Health Recommendations***:
 
 The tool will not provide specific medical advice, treatment recommendations, or any form of personalized health guidance based on the evaluated content. The focus is strictly on credibility assessment, not on recommending actions.
-Technical Requirements (Out of Scope):
-Advanced Security Features (e.g., HIPAA Compliance):
+
+### Technical Requirements (Out of Scope)***:
+***Advanced Security Features (e.g., HIPAA Compliance)***:
 
 While basic security protocols (encryption, secure APIs) will be implemented, the system is not intended to handle personal health information (PHI) or comply with strict regulations like HIPAA. The extension is purely for information trustworthiness assessment and does not store sensitive medical data.
-Integration with External APIs or Health Systems:
+
+***Integration with External APIs or Health Systems***:
 
 The project will not include integration with external medical databases (e.g., hospital systems, electronic health records) or third-party APIs beyond the pre-defined PubMed data and Hugging Face datasets.
-Model Training on Real-Time Data:
+
+***Model Training on Real-Time Data***:
 
 The AI model will be pre-trained on static datasets (such as PubMed Abstracts). Real-time updates to the training data or model retraining based on new incoming data (e.g., new medical studies published daily) are out of scope.
-Support for Audio, Video, or Image Data:
+
+***Support for Audio, Video, or Image Data***:
 
 The system will only handle text-based medical content. Analyzing multimedia content such as medical images, videos, or podcasts is not within the scope of this project.
-Highly Customizable User Interfaces:
+
+***Highly Customizable User Interfaces***:
 
 While the Chrome Extension will provide a user-friendly interface, deep customization options for users (e.g., theming, extensive layout modifications) will not be included. The focus will be on a standard UI with necessary functionalities.
-AI Model Customization by End Users:
+
+***AI Model Customization by End Users***:
 
 Users will not have the ability to modify or retrain the AI model on their own data. The AI system will be a black-box service from the user's perspective, with only the explainable AI features providing insights into the predictions.
-Extensive Logging and Analytics Dashboards:
+
+***Extensive Logging and Analytics Dashboards***:
 
 The system will log essential data for model performance monitoring and basic usage statistics, but it will not include detailed analytics dashboards or reporting tools for users or administrators.
 
