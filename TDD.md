@@ -19,7 +19,7 @@ Despite progress, no comprehensive tool exists to assess health information trus
 
 ### Out of Scope
 
-Product Requirements (Out of Scope):
+###Product Requirements (Out of Scope):
 Offline Functionality:
 
 The system will not support offline access or predictions. It requires a continuous internet connection to function, as all data processing and model inference will occur on the backend server.
@@ -66,62 +66,47 @@ The system will log essential data for model performance monitoring and basic us
 
 ### Terminology
 
-Transformer Model:
+***Transformer Model***: A deep learning architecture for NLP tasks using self-attention to process text sequences, with popular models like BERT and SciBERT.
 
-A type of deep learning architecture primarily used for natural language processing (NLP) tasks. It leverages self-attention mechanisms to process and analyze sequences of text. Examples include BERT and SciBERT.
-SciBERT:
+***SciBERT***: A BERT variant pre-trained on scientific and biomedical literature, ideal for medical text analysis.
 
-A variant of BERT (Bidirectional Encoder Representations from Transformers) model, pre-trained on a large corpus of scientific literature, particularly biomedical and clinical text. It is well-suited for medical and research-related text analysis.
-Explainable AI (XAI):
+***Explainable AI (XAI)***: Methods that make AI decisions understandable, building trust in model predictions.
 
-Techniques that make AI model decisions transparent and interpretable for users. It helps users understand why an AI system made a particular prediction, enhancing trust and accountability in the system.
-LIME (Local Interpretable Model-Agnostic Explanations):
+***LIME***: An XAI method providing local explanations by testing input variations to clarify individual predictions.
 
-A popular explainable AI method that provides local explanations for predictions made by machine learning models by perturbing the input and observing changes in the output. LIME helps explain individual predictions in a way users can understand.
-PubMed:
+***PubMed***: A free database for life sciences and biomedical research abstracts, managed by NCBI.
 
-A free search engine accessing primarily the MEDLINE database of references and abstracts on life sciences and biomedical topics, maintained by the National Center for Biotechnology Information (NCBI).
-Hugging Face Datasets:
+***Hugging Face Datasets***: A resource for pre-trained NLP models and datasets, including PubMed Abstracts for model fine-tuning.
 
-A platform offering pre-trained models and datasets for natural language processing. The project uses a dataset of PubMed Abstracts, available through Hugging Face, for fine-tuning the model.
-Chrome Extension:
+***Chrome Extension***: A software add-on enhancing Google Chrome, enabling user interaction with the trustworthiness system for medical content.
 
-A small software program that enhances the functionality of the Google Chrome browser. In this project, the extension will allow users to interact with the trustworthiness prediction system while browsing medical content online.
-FastAPI:
+***FastAPI***: A Python framework for building high-performance APIs, used to handle model inference and requests.
 
-A modern web framework for building APIs with Python. It is designed for high performance, handling requests quickly, and is used in this project to manage AI model inference and API requests from the Chrome Extension.
-Model Inference:
+***Model Inference***: Using a pre-trained model to predict trustworthiness on new data.
 
-The process of using a pre-trained machine learning model to make predictions on new, unseen data. In this context, the model inference refers to predicting the trustworthiness of online medical content.
-MongoDB:
+***MongoDB***: A NoSQL database for unstructured data, like logs and interactions.
 
-A NoSQL database that stores unstructured data, such as logs and user interactions. It’s used in this project for handling data that doesn’t fit neatly into tables (e.g., usage logs).
-PostgreSQL:
+***PostgreSQL***: A relational database for structured data management, used for user data and predictions.
 
-A powerful, open-source relational database system used to manage structured data, ensuring the secure and consistent management of user information, predictions, and metadata.
-Unstructured Data:
+***Unstructured Data***: Data without a fixed format, stored in MongoDB.
 
-Data that does not follow a specific format or structure, such as logs, user comments, or content pulled from various online platforms. It is stored in databases like MongoDB.
-Structured Data:
+***Structured Data***: Organized data stored in relational databases like PostgreSQL.
 
-Organized data that follows a specific format, typically stored in relational databases like PostgreSQL. Examples include user IDs, timestamps, and prediction results.
-XAI Techniques:
+***XAI Techniques***: Methods like LIME that provide understandable explanations for AI predictions.
 
-Explainable AI techniques like LIME that provide interpretable explanations of AI decisions, helping users understand why specific content was deemed trustworthy or untrustworthy.
-Component-Based Design (React):
-
-A design principle used in React applications where the user interface is broken down into reusable, self-contained components, making development and maintenance easier.
+***Component-Based Design (React)***: A UI design approach in React, breaking the interface into reusable parts for easier maintenance.
 
 ## Proposal
 
 The project’s front end will be a Chrome Extension built with React for efficient, modular UI. This extension will integrate trustworthiness assessments directly into medical content pages, providing users with real-time, unobtrusive trust scores and explanations via widgets, modals, and other interactive components. Key features include:
 
-Trustworthiness Score Display: A clear, color-coded score for content credibility.
-Explanation Modal: Uses Explainable AI (XAI) to show why content is rated as it is.
-Settings and Feedback: Users can adjust trust score preferences and provide feedback.
-The front end connects to a FastAPI backend that manages data storage, handles trustworthiness predictions, and uses a fine-tuned SciBERT model to evaluate content. FastAPI’s async capabilities ensure responsiveness, while RESTful APIs facilitate communication with React. MongoDB stores user logs and feedback, while PostgreSQL manages structured data like user profiles.
+***Trustworthiness*** Score Display: A clear, color-coded score for content credibility.
+***Explanation Modal***: Uses Explainable AI (XAI) to show why content is rated as it is.
+***Settings and Feedback***: Users can adjust trust score preferences and provide feedback.
 
-The back end’s SciBERT model, served via TorchServe, analyzes text credibility. LIME explanations clarify AI predictions, enhancing transparency. Security is enforced through JWT authentication, data encryption, and CORS policies. The system’s architecture is optimized for performance and scalability with Docker, Kubernetes, and asynchronous task handling.
+***The front end*** connects to a FastAPI backend that manages data storage, handles trustworthiness predictions, and uses a fine-tuned SciBERT model to evaluate content. FastAPI’s async capabilities ensure responsiveness, while RESTful APIs facilitate communication with React. MongoDB stores user logs and feedback, while PostgreSQL manages structured data like user profiles.
+
+***The back end’s*** SciBERT model, served via TorchServe, analyzes text credibility. LIME explanations clarify AI predictions, enhancing transparency. Security is enforced through JWT authentication, data encryption, and CORS policies. The system’s architecture is optimized for performance and scalability with Docker, Kubernetes, and asynchronous task handling.
 
 Deployment on AWS or GCP, with CI/CD via GitHub Actions, ensures scalable, globally accessible service.
 
