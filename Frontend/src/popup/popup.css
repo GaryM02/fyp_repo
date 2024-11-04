@@ -1,0 +1,56 @@
+/* styles.css */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #555;
+}
+
+.score-box {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.score-box h2 {
+    font-size: 2em;
+    color: #4CAF50; /* Green color for positive score */
+}
+
+.explanation-box {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.explanation-box label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.explanation-box textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    background-color: #f9f9f9;
+    color: #555;
+    cursor: not-allowed; /* Indicates it is non-editable */
+}
