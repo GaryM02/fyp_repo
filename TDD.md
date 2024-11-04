@@ -221,7 +221,7 @@ Place PostgreSQL and MongoDB at the bottom of FastAPI.
 Connect FastAPI to each database component for data persistence.
 
 <p align="center">
-<img src="/fyp_content/fyp_components.webp" alt="Components Model" style="height: 700px; width:1000px;"/>
+<img src="/fyp_content/fyp_components.webp" alt="Components Model" style="height: 800px; width:1000px;"/>
 </p>
 
 ###TODO
