@@ -128,8 +128,73 @@ Deployment on AWS or GCP, with CI/CD via GitHub Actions, ensures scalable, acces
 
 ### System Design
 
-If the design proposed in the document consists multiple components, listing those components here and explaining their role in the solution is necessary.
-A diagram could explain a lot more than words in this section.
+Main Components
+Frontend (React)
+
+Description: Handles user interaction, displaying predictions, and collecting feedback.
+Components:
+User Interface (UI): Manages user registration, login, prediction submission, and feedback input.
+API Client: Sends HTTP requests to the backend for authentication, prediction, and feedback submission.
+Interactions:
+Communicates with FastAPI using HTTP requests for all backend operations (authentication, prediction, feedback).
+Backend (FastAPI)
+
+Description: Manages all core application logic, handles API requests, coordinates with TorchServe for predictions, and interacts with databases.
+Components:
+Authentication Controller: Manages user registration, login, and JWT token issuance.
+Prediction Controller: Receives content or URLs from users and requests prediction results from TorchServe.
+Feedback Controller: Accepts feedback from users and stores it in PostgreSQL.
+Audit Logging Service: Records significant application events in MongoDB.
+Database Manager: Interfaces with PostgreSQL and MongoDB to perform CRUD operations.
+Interactions:
+Communicates with React using HTTP responses to serve data (e.g., predictions, feedback).
+Sends prediction requests to TorchServe over HTTP.
+Interacts with PostgreSQL for structured data management (e.g., users, predictions, feedback).
+Interacts with MongoDB for logging events.
+Model Serving (TorchServe)
+
+Description: Hosts and serves the machine learning model for predictions.
+Components:
+Prediction API: Accepts requests from FastAPI and returns model predictions, including trustworthiness scores and explanations.
+Interactions:
+Receives requests from FastAPI for model inference.
+Returns prediction results to FastAPI, including the trustworthiness score and model explanation.
+Databases
+
+PostgreSQL (Structured Data):
+
+Description: Stores structured application data (Users, Predictions, Feedback).
+Tables:
+Users: Stores user account details.
+Predictions: Stores prediction results.
+Feedback: Stores feedback provided by users.
+Interactions:
+Receives queries from FastAPI for storing and retrieving user data, predictions, and feedback.
+MongoDB (Unstructured Data - AuditLog):
+
+Description: Stores unstructured data, specifically the audit log for system events.
+Collections:
+AuditLog: Stores log entries for various system events (e.g., prediction errors, feedback submissions).
+Interactions:
+Receives log data from FastAPI for tracking system events.
+
+Frontend (React)
+
+Place React on the left side as the entry point for user interaction.
+Indicate HTTP connections between React and FastAPI.
+Backend (FastAPI)
+
+Place FastAPI in the center as the core application logic.
+Connect FastAPI to each of the databases (PostgreSQL and MongoDB) and TorchServe.
+Model Serving (TorchServe)
+
+Place TorchServe on the right side of FastAPI.
+Show an HTTP connection from FastAPI to TorchServe for prediction requests.
+Databases (PostgreSQL and MongoDB)
+
+Place PostgreSQL and MongoDB at the bottom of FastAPI.
+Connect FastAPI to each database component for data persistence.
+
 
 ###TODO
 
